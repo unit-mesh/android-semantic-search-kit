@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import org.unitmesh.llmpoc.databinding.ActivityMainBinding
+import org.unitmesh.llmpoc.embedding.STSemantic
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +29,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val stSemantic = STSemantic.create(this)
+        val output = stSemantic.embed("demo")
+        println(output)
     }
 }

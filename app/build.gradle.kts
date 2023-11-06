@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "org.unitmesh.llmpoc"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -38,8 +38,11 @@ android {
 dependencies {
     api("io.kinference", "inference-core", "0.2.16")
     api("io.kinference", "inference-ort", "0.2.16")
-    // api("io.kinference", "inference-ort-gpu", "0.2.16")
 
+//    implementation("com.microsoft.onnxruntime:onnxruntime:1.16.1")
+    implementation("ai.djl.huggingface:tokenizers:0.24.0")
+    implementation("ai.djl.android:onnxruntime:0.24.0")
+    implementation("ai.djl.android:core:0.24.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
