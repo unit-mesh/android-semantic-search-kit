@@ -36,6 +36,10 @@ android {
 }
 
 dependencies {
+    api("io.kinference", "inference-core", "0.2.16")
+    api("io.kinference", "inference-ort", "0.2.16")
+    // api("io.kinference", "inference-ort-gpu", "0.2.16")
+
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
