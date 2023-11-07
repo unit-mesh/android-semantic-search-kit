@@ -1,4 +1,14 @@
-##
+## Model
+
+Intellij IDEA:
+
+semantic-text-search-0.0.1.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1]((https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.1/semantic-text-search-0.0.1.jar))
+semantic-text-search-0.0.2.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1]((https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.2/semantic-text-search-0.0.2.jar))
+semantic-text-search-0.0.3.jar, 9.6M - [dan-bert-tiny](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.3/semantic-text-search-0.0.3.jar)
+
+Bloop: 
+
+[all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
 
 ## Know issue
 
