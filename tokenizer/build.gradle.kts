@@ -1,6 +1,9 @@
+import org.tensorflow.lite.schema.ArgMaxOptions
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("org.mozilla.rust-android-gradle.rust-android") version "0.9.3" apply true
 }
 
 android {
@@ -30,6 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+cargo {
+    module  = "./rust"
+    libname = "tokenizer"
+    targets = listOf("arm", "x86")
 }
 
 dependencies {
