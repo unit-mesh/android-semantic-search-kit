@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "LLM Poc"
 include(":app")
+include(":tokenizer")
