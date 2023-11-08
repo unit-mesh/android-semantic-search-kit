@@ -37,10 +37,7 @@ jobs:
         run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android aarch64-apple-ios x86_64-apple-ios
 
       - name: build android
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 34
-          script: ./gradlew cargoBuild
+        run: ./gradlew cargoBuild
 
       - name: build iso
         run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
