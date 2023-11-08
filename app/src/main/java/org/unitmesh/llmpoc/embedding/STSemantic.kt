@@ -7,6 +7,7 @@ import ai.onnxruntime.OrtUtil
 import android.content.Context
 import android.content.res.AssetManager
 import org.unitmesh.tokenizer.huggingface.tokenizers.HuggingFaceTokenizer
+import java.io.InputStream
 
 
 class STSemantic(
@@ -69,13 +70,12 @@ class STSemantic(
          * We can use [optimum](https://github.com/huggingface/optimum) to transform the model to onnx.
          */
         fun create(context: Context): STSemantic {
-            val assetManager: AssetManager = context.getAssets()
+            val assetManager: AssetManager = context.assets
 
-            val tokenizerStream = assetManager.open("model/tokenizer.json")
-            val onnxStream = assetManager.open("model/model.onnx")
+            val tokenizerStream: InputStream = assetManager.open("model/tokenizer.json")
+            val onnxStream: InputStream = assetManager.open("model/model.onnx")
 
-
-            val tokenizer = HuggingFaceTokenizer.newInstance(tokenizerStream, null)
+            val tokenizer = HuggingFaceTokenizer.newInstance(tokenizerStream, mapOf())
             val ortEnv = OrtEnvironment.getEnvironment()
             val sessionOptions = OrtSession.SessionOptions()
 

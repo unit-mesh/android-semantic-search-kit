@@ -1,8 +1,6 @@
 package org.unitmesh.llmpoc
 
-import android.content.res.AssetManager
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,8 +9,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.unitmesh.llmpoc.databinding.ActivityMainBinding
 import org.unitmesh.llmpoc.embedding.STSemantic
-import java.io.IOException
-import java.io.InputStream
 
 
 //import org.unitmesh.llmpoc.embedding.STSemantic
@@ -38,30 +34,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-//        loadBinAsset("xml/backup_rules.xml")
+
+        System.loadLibrary("tokenizers")
 
         val stSemantic = STSemantic.create(this)
         val output = stSemantic.embed("demo")
         println(output)
-    }
-
-    fun loadBinAsset(name: String): ByteArray? {
-        var stream: InputStream? = null
-        try {
-            // read all
-            val size = stream!!.available()
-            val buffer = ByteArray(size)
-            stream.read(buffer)
-            return buffer
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } finally {
-            try {
-                stream?.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        return null
     }
 }
