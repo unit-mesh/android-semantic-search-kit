@@ -1,3 +1,17 @@
+# Android LLM PoC
+
+## Quick Start and failed
+
+```bash
+git submodule update --init
+```
+
+build
+
+```
+./gradlew cargoBuild
+```
+
 ## Model
 
 Intellij IDEA:
