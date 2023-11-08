@@ -9,7 +9,14 @@ git submodule update --init
 build
 
 ```
+rustup target add armv7-linux-androideabi
 ./gradlew cargoBuild
+```
+
+for iOS
+
+```
+rustup target add aarch64-apple-ios
 ```
 
 ## Model
