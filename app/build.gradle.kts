@@ -36,13 +36,8 @@ android {
 }
 
 dependencies {
-    api("io.kinference", "inference-core", "0.2.16")
-//    api("io.kinference", "inference-ort", "0.2.16")
-
-//    implementation("com.microsoft.onnxruntime:onnxruntime:1.16.1")
-    implementation("ai.djl.huggingface:tokenizers:0.23.0")
+    implementation(":tokenizer")
     implementation("ai.djl.android:onnxruntime:0.23.0")
-//    implementation("ai.djl.android:core:0.23.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

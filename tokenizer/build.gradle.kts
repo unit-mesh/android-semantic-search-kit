@@ -33,8 +33,30 @@ android {
     }
 }
 
+tasks.register("processResources") {
+    outputs.dir(file("${project.buildDir}/classes/java/main/native/lib"))
+}
+
+tasks.getByName("assemble").dependsOn(tasks.getByName("processResources"))
+
+tasks.register("compileJNI") {
+    doFirst {
+//        exec {
+//            commandLine("bash", "build.sh", "0.1.0", "armv7-linux-androideabi")
+//        }
+
+        println(project.projectDir)
+        val ciDir = "${project.projectDir}/jnilib/0.1.0/"
+        copy {
+            from("${project.buildDir}/jnilib")
+            into(ciDir)
+        }
+        File(System.getProperty("user.home") + "/.djl.ai/tokenizers").delete()
+    }
+}
+
 cargo {
-    module  = "./rust"
+    module = "./rust"
     libname = "tokenizer"
     targets = listOf("arm", "x86")
     profile = "release"
