@@ -27,7 +27,7 @@ use jni::sys::{jboolean, jint, jlong, jlongArray, jobjectArray, jsize, jstring, 
 use jni::JNIEnv;
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizer(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizer(
     env: JNIEnv,
     _: JObject,
     input: JString,
@@ -50,7 +50,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizerFromString(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizerFromString(
     env: JNIEnv,
     _: JObject,
     json: JString,
@@ -72,7 +72,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 
 // Tokenizer using BPE model
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_createBpeTokenizer(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_createBpeTokenizer(
     env: JNIEnv,
     _: JObject,
     vocabulary: JString,
@@ -98,7 +98,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_deleteTokenizer(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_deleteTokenizer(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -107,7 +107,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_encode(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_encode(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -134,7 +134,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_encodeDual(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_encodeDual(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -167,7 +167,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_encodeList(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_encodeList(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -200,7 +200,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_batchEncode(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_batchEncode(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -234,7 +234,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_batchEncodePair(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_batchEncodePair(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -278,7 +278,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_deleteEncoding(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_deleteEncoding(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -287,7 +287,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getTokenIds(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getTokenIds(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -307,7 +307,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getTypeIds(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getTypeIds(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -326,7 +326,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getWordIds(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getWordIds(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -349,7 +349,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getTokens(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getTokens(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -370,7 +370,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getAttentionMask(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getAttentionMask(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -389,7 +389,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getSpecialTokenMask(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getSpecialTokenMask(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -408,7 +408,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getTokenCharSpans(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getTokenCharSpans(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -450,7 +450,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getOverflowing(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getOverflowing(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -469,7 +469,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_decode(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_decode(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -501,7 +501,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_batchDecode(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_batchDecode(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -546,7 +546,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getTruncationStrategy(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getTruncationStrategy(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -567,7 +567,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getPaddingStrategy(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getPaddingStrategy(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -591,7 +591,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getMaxLength(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getMaxLength(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -616,7 +616,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getStride(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getStride(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -631,7 +631,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_getPadToMultipleOf(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_getPadToMultipleOf(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -646,7 +646,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_setPadding(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_setPadding(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -686,7 +686,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_disablePadding(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_disablePadding(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -696,7 +696,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_setTruncation(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_setTruncation(
     env: JNIEnv,
     _: JObject,
     handle: jlong,
@@ -733,7 +733,7 @@ pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_
 }
 
 #[no_mangle]
-pub extern "system" fn Java_ai_djl_huggingface_tokenizers_jni_TokenizersLibrary_disableTruncation(
+pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_disableTruncation(
     _env: JNIEnv,
     _: JObject,
     handle: jlong,

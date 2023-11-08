@@ -54,28 +54,31 @@ public final class LibUtils {
     }
 
     private static void loadLibrary() {
-        String[] libs;
-        if (System.getProperty("os.name").startsWith("Windows")) {
-            libs =
-                    new String[] {
-                        "libwinpthread-1.dll", "libgcc_s_seh-1.dll", "libstdc++-6.dll", LIB_NAME
-                    };
-        } else {
-            libs = new String[] {LIB_NAME};
-        }
+        System.loadLibrary("tokenizers");
+        System.loadLibrary("djl");
 
-        Path dir = copyJniLibraryFromClasspath(libs);
-        logger.debug("Loading huggingface library from: {}", dir);
-
-        for (String libName : libs) {
-            String path = dir.resolve(libName).toString();
-            logger.debug("Loading native library: {}", path);
-            String nativeHelper = System.getProperty("ai.djl.huggingface.native_helper");
-            if (nativeHelper != null && !nativeHelper.isEmpty()) {
-                ClassLoaderUtils.nativeLoad(nativeHelper, path);
-            }
-            System.load(path); // NOPMD
-        }
+//        String[] libs;
+//        if (System.getProperty("os.name").startsWith("Windows")) {
+//            libs =
+//                    new String[] {
+//                        "libwinpthread-1.dll", "libgcc_s_seh-1.dll", "libstdc++-6.dll", LIB_NAME
+//                    };
+//        } else {
+//            libs = new String[] {LIB_NAME};
+//        }
+//
+//        Path dir = copyJniLibraryFromClasspath(libs);
+//        logger.debug("Loading huggingface library from: {}", dir);
+//
+//        for (String libName : libs) {
+//            String path = dir.resolve(libName).toString();
+//            logger.debug("Loading native library: {}", path);
+//            String nativeHelper = System.getProperty("ai.djl.huggingface.native_helper");
+//            if (nativeHelper != null && !nativeHelper.isEmpty()) {
+//                ClassLoaderUtils.nativeLoad(nativeHelper, path);
+//            }
+//            System.load(path); // NOPMD
+//        }
     }
 
     private static Path copyJniLibraryFromClasspath(String[] libs) {
