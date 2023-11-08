@@ -16,7 +16,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-
         externalNativeBuild {
             cmake {
                 abiFilters.add("arm64-v8a")
@@ -50,7 +49,7 @@ android {
     }
 
     sourceSets.getByName("main") {
-        jniLibs.srcDir("libs")
+        jniLibs.srcDirs("src/main/jniLibs", "libs")
     }
 
     kotlinOptions {
