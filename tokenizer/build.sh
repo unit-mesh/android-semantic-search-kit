@@ -12,6 +12,7 @@ PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
 
 VERSION=v$1
 ARCH=$2
+ANDROID_ARCH=$3
 
 pushd $WORK_DIR
 if [ ! -d "../vendors/tokenizers" ]; then
@@ -29,5 +30,5 @@ javac -sourcepath src/main/java/ src/main/java/org/unitmesh/tokenizer/huggingfac
 RUST_MANIFEST=rust/Cargo.toml
 cargo build --manifest-path $RUST_MANIFEST --release
 
-mkdir -p build/jnilib/$ARCH
-cp -f rust/target/$ARCH/release/libdjl.so build/jnilib/$ARCH/libtokenizers.so
+mkdir -p libs/$ANDROID_ARCH
+cp -f rust/target/$ARCH/release/libdjl.so libs/$ANDROID_ARCH/libtokenizers.so
