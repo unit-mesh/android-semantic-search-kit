@@ -68,7 +68,6 @@ android {
 val version = "0.1.0"
 
 tasks.register("compileJNI") {
-    this.dependsOn(tasks.getByName("cargoBuild"))
     doFirst {
         copy {
             from("${project.projectDir}/tokenizers.properties")
@@ -92,7 +91,7 @@ tasks.register("compileJNI") {
 cargo {
     module = "./rust"
     libname = "tokenizer"
-    targets = listOf("arm", "x86", "x86_64", "arm64")
+    targets = listOf("arm", "arm64", "x86", "x86_64")
     profile = "release"
 }
 
