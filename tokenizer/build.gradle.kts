@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.tasks.factory.dependsOn
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -31,22 +33,37 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    gradle.projectsEvaluated {
+        android.libraryVariants.all { variant ->
+            println("${variant.name}........")
+            variant.javaCompileProvider.dependsOn(tasks.getByName("processResources"))
+            true
+        }
+    }
 }
+
+val version = "0.1.0"
 
 tasks.register("processResources") {
-    outputs.dir(file("${project.buildDir}/classes/java/main/native/lib"))
+    outputs.dir(file("${project.buildDir}/classes/main/native/lib"))
+    doLast {
+        val jnilibDir = "${project.projectDir}/jnilib/${version}"
+        copy {
+            from(jnilibDir)
+            into("${project.buildDir}/classes/main/native/lib")
+        }
+    }
 }
-
-tasks.getByName("assemble").dependsOn(tasks.getByName("processResources"))
 
 tasks.register("compileJNI") {
     doFirst {
-//        exec {
-//            commandLine("bash", "build.sh", "0.1.0", "i686-linux-android")
-//        }
-//        exec {
-//            commandLine("bash", "build.sh", "0.1.0", "armv7-linux-androideabi")
-//        }
+        exec {
+            commandLine("bash", "build.sh", version, "i686-linux-android")
+        }
+        exec {
+            commandLine("bash", "build.sh", version, "armv7-linux-androideabi")
+        }
 
         val ciDir = "${project.projectDir}/jnilib/0.1.0/"
         copy {

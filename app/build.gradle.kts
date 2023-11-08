@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    implementation(":tokenizer")
+    project(":tokenizer")
     implementation("ai.djl.android:onnxruntime:0.23.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
