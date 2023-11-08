@@ -6,10 +6,56 @@
 git submodule update --init
 ```
 
-build
+1.setup NDK
 
 ```
-rustup target add armv7-linux-androideabi
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk/26.1.10909125
+
+export TOOLCHAIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64
+export TARGET=aarch64-linux-android
+export API=34
+
+export AR=$TOOLCHAIN/bin/llvm-ar
+export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+export AS=$CC
+export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+export LD=$TOOLCHAIN/bin/ld
+export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+export STRIP=$TOOLCHAIN/bin/llvm-strip
+
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$TOOLCHAIN/bin
+```
+
+same to `[local.properties](local.properties)` if you use Android Studio
+
+```
+ndk.dir=/Users/phodal/Library/Android/sdk/ndk/26.1.10909125
+```
+
+config linked
+
+After that add the following like to `$HOME/.cargo/config` (make the config file if it doesn't exist):
+
+```toml
+[target.i686-linux-android]
+linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android34-clang"
+
+[target.arm-linux-android]
+linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-android34-clang"
+```
+
+
+2.setup Rust target
+
+```bash
+rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi
+```
+
+3.build
+
+```
 ./gradlew cargoBuild
 ```
 
@@ -83,4 +129,13 @@ Caused by: java.lang.IllegalStateException: Cannot copy jni files
 Issue: [2170](https://github.com/deepjavalibrary/djl/issues/2170)
 
 Solution: [Rust Android Gradle Plugin](https://github.com/mozilla/rust-android-gradle)
+
+### arm-linux-androideabi-ranlib not found
+
+Error building Rust project for Android (Flutter): arm-linux-androideabi-ranlib not found for OpenSSL compilation
+
+https://stackoverflow.com/questions/75943717/error-building-rust-project-for-android-flutter-arm-linux-androideabi-ranlib
+
+
+
 
