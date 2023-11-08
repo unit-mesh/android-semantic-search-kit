@@ -19,9 +19,18 @@ android {
 
         externalNativeBuild {
             cmake {
-                cppFlags("-std=c++14", "-fexceptions", "-frtti")
-                arguments("-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_shared")
+                abiFilters.add("armeabi-v7a")
+                abiFilters.add("x86")
+                abiFilters.add("x86_64")
+                arguments += listOf("-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_shared")
             }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.27.5"
         }
     }
 
@@ -59,6 +68,7 @@ android {
 val version = "0.1.0"
 
 tasks.register("compileJNI") {
+    this.dependsOn(tasks.getByName("cargoBuild"))
     doFirst {
         copy {
             from("${project.projectDir}/tokenizers.properties")
@@ -73,13 +83,16 @@ tasks.register("compileJNI") {
         exec {
             commandLine("bash", "build.sh", version, "armv7-linux-androideabi", "armeabi-v7a")
         }
+        exec {
+            commandLine("bash", "build.sh", version, "aarch64-linux-android", "arm64-v8a")
+        }
     }
 }
 
 cargo {
     module = "./rust"
     libname = "tokenizer"
-    targets = listOf("arm", "x86", "x86_64")
+    targets = listOf("arm", "x86", "x86_64", "arm64")
     profile = "release"
 }
 

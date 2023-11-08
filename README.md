@@ -38,6 +38,8 @@ config linked
 
 After that add the following like to `$HOME/.cargo/config` (make the config file if it doesn't exist):
 
+Follow: [https://doc.rust-lang.org/beta/rustc/platform-support.html](https://doc.rust-lang.org/beta/rustc/platform-support.html)
+
 ```toml
 [target.i686-linux-android]
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android34-clang"
@@ -47,13 +49,16 @@ linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/pr
 
 [target.x86_64-linux-android]
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/x86_64-linux-android34-clang"
+
+[target.aarch64-linux-android]
+linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android34-clang"
 ```
 
 
 2.setup Rust target
 
 ```bash
-rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi x86_64-linux-android
+rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi x86_64-linux-android aarch64-linux-android
 ```
 
 3.build
