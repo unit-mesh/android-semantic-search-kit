@@ -42,10 +42,12 @@ tasks.getByName("assemble").dependsOn(tasks.getByName("processResources"))
 tasks.register("compileJNI") {
     doFirst {
 //        exec {
+//            commandLine("bash", "build.sh", "0.1.0", "i686-linux-android")
+//        }
+//        exec {
 //            commandLine("bash", "build.sh", "0.1.0", "armv7-linux-androideabi")
 //        }
 
-        println(project.projectDir)
         val ciDir = "${project.projectDir}/jnilib/0.1.0/"
         copy {
             from("${project.buildDir}/jnilib")
