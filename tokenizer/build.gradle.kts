@@ -38,6 +38,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    gradle.projectsEvaluated {
+        android.libraryVariants.all { variant ->
+            println("${variant.name}........")
+            variant.javaCompileProvider.dependsOn(tasks.getByName("compileJNI"))
+            true
+        }
+    }
 }
 
 val version = "0.1.0"
