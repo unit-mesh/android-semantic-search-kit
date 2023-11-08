@@ -52,6 +52,10 @@ val version = "0.1.0"
 
 tasks.register("compileJNI") {
     doFirst {
+        copy {
+            from("${project.projectDir}/tokenizers.properties")
+            into("${project.projectDir}/libs")
+        }
         exec {
             commandLine("bash", "build.sh", version, "i686-linux-android", "armeabi-v7a")
         }

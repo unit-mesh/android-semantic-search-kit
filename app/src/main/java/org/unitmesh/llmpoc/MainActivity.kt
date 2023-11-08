@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.unitmesh.llmpoc.databinding.ActivityMainBinding
+import org.unitmesh.llmpoc.embedding.STSemantic
 import java.io.IOException
 import java.io.InputStream
 
