@@ -43,5 +43,4 @@ jobs:
           script: ./gradlew cargoBuild
 
       - name: build iso
-        with:
-          script: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
+        run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
