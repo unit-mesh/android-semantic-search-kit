@@ -38,19 +38,16 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        loadBinAsset("xml/backup_rules.xml")
+//        loadBinAsset("xml/backup_rules.xml")
 
-//        val stSemantic = STSemantic.create(this)
-//        val output = stSemantic.embed("demo")
-//        println(output)
+        val stSemantic = STSemantic.create(this)
+        val output = stSemantic.embed("demo")
+        println(output)
     }
 
     fun loadBinAsset(name: String): ByteArray? {
         var stream: InputStream? = null
         try {
-
-
-
             // read all
             val size = stream!!.available()
             val buffer = ByteArray(size)

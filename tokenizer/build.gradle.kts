@@ -15,6 +15,14 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+
+        externalNativeBuild {
+            cmake {
+                cppFlags("-std=c++14", "-fexceptions", "-frtti")
+                arguments("-DANDROID_ARM_NEON=TRUE", "-DANDROID_STL=c++_shared")
+            }
+        }
     }
 
     buildTypes {
@@ -57,10 +65,13 @@ tasks.register("compileJNI") {
             into("${project.projectDir}/libs")
         }
         exec {
-            commandLine("bash", "build.sh", version, "i686-linux-android", "armeabi-v7a")
+            commandLine("bash", "build.sh", version, "x86_64-linux-android", "x86_64")
         }
         exec {
-            commandLine("bash", "build.sh", version, "armv7-linux-androideabi", "x86_64")
+            commandLine("bash", "build.sh", version, "i686-linux-android", "x86")
+        }
+        exec {
+            commandLine("bash", "build.sh", version, "armv7-linux-androideabi", "armeabi-v7a")
         }
     }
 }
@@ -68,7 +79,7 @@ tasks.register("compileJNI") {
 cargo {
     module = "./rust"
     libname = "tokenizer"
-    targets = listOf("arm", "x86")
+    targets = listOf("arm", "x86", "x86_64")
     profile = "release"
 }
 

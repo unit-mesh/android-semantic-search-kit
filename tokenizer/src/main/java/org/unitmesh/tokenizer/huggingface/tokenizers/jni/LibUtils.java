@@ -38,7 +38,8 @@ public final class LibUtils {
 
     static {
         try {
-            loadLibrary();
+//            loadLibrary();
+            System.loadLibrary("tokenizers");
         } catch (RuntimeException e) {
             exception = new EngineException("Failed to load Huggingface native library.", e);
         }

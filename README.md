@@ -44,13 +44,16 @@ linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/pr
 
 [target.arm-linux-android]
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-android34-clang"
+
+[target.x86_64-linux-android]
+linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/x86_64-linux-android34-clang"
 ```
 
 
 2.setup Rust target
 
 ```bash
-rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi
+rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi x86_64-linux-android
 ```
 
 3.build
