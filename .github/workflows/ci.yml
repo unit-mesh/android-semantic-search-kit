@@ -54,5 +54,5 @@ jobs:
           TOOLCHAIN: ${{ env.ANDROID_SDK_ROOT }}/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64
           RANLIB: ${{ env.ANDROID_SDK_ROOT }}/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib
 
-      - name: build iso
-        run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
+#      - name: build iso
+#        run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
