@@ -24,7 +24,8 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r26
+          ndk-version: r26b
+          add-to-path: true
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
