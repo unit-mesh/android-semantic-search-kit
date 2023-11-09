@@ -26,7 +26,8 @@ class STSemantic(
         val attentionMask = tokenized.attentionMask
         val typeIds = tokenized.typeIds
 
-        val tensorInput = OrtUtil.reshape(inputIds, longArrayOf(1, inputIds.size.toLong()))
+        val size = inputIds.size
+        val tensorInput = OrtUtil.reshape(inputIds, longArrayOf(1, size.toLong()))
         val tensorAttentionMask =
             OrtUtil.reshape(attentionMask, longArrayOf(1, attentionMask.size.toLong()))
         val tensorTypeIds = OrtUtil.reshape(typeIds, longArrayOf(1, typeIds.size.toLong()))
@@ -42,16 +43,16 @@ class STSemantic(
         val outputTensor: OnnxTensor = result.get(0) as OnnxTensor
 
         val floatArray = outputTensor.floatBuffer.array()
-        val meanArray = mutableListOf<Float>()
-        val size = 384
-
-        for (i in floatArray.indices step size) {
+        val shapeSize = outputTensor.info.shape[2].toInt()
+        // floatArray is an inputIds.size * 384 array, we need to mean it to 384 and values
+        val meanArray = FloatArray(shapeSize)
+        for (i in 0 until shapeSize) {
             var sum = 0f
-            for (j in i until i + size) {
-                sum += floatArray[j]
+            for (j in inputIds.indices) {
+                sum += floatArray[j * size + i]
             }
 
-            meanArray.add(sum / size)
+            meanArray[i] = sum / size
         }
 
         return meanArray.map { it.toDouble() }
