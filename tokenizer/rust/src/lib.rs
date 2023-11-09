@@ -417,6 +417,8 @@ pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_To
     let tokens = encoding.get_tokens();
     let len = tokens.len() as jsize;
 
+    println!("org/unitmesh/tokenizer/huggingface/tokenizers/jni/CharSpan");
+
     let array: jobjectArray = env
         .new_object_array(
             len,
@@ -728,7 +730,7 @@ pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_To
             max_length: truncation_max_length as usize,
             ..Default::default()
         };
-        tokenizer.with_truncation(Some(truncation_params));
+        let _ = tokenizer.with_truncation(Some(truncation_params));
     }
 }
 
@@ -739,7 +741,7 @@ pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_To
     handle: jlong,
 ) {
     let tokenizer = cast_handle::<Tokenizer>(handle);
-    tokenizer.with_truncation(None);
+    let _ = tokenizer.with_truncation(None);
 }
 
 fn to_handle<T: 'static>(val: T) -> jlong {
