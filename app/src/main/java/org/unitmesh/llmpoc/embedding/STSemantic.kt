@@ -22,15 +22,9 @@ class STSemantic(
     fun embed(input: String): List<Double> {
         val tokenized = tokenizer.encode(input, true)
 
-        var inputIds = tokenized.ids
-        var attentionMask = tokenized.attentionMask
-        var typeIds = tokenized.typeIds
-
-        if (tokenized.ids.size >= 512) {
-            inputIds = inputIds.slice(0..510).toLongArray()
-            attentionMask = attentionMask.slice(0..510).toLongArray()
-            typeIds = typeIds.slice(0..510).toLongArray()
-        }
+        val inputIds = tokenized.ids
+        val attentionMask = tokenized.attentionMask
+        val typeIds = tokenized.typeIds
 
         val tensorInput = OrtUtil.reshape(inputIds, longArrayOf(1, inputIds.size.toLong()))
         val tensorAttentionMask =
