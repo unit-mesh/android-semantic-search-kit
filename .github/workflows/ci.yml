@@ -52,7 +52,7 @@ jobs:
       - name: build android
         run: ./gradlew cargoBuild
         env:
-          ANDROID_NDK_HOME: ${{ ANDROID_SDK_ROOT }}/ndk
+          ANDROID_NDK_HOME: $ANDROID_SDK_ROOT/ndk
           TOOLCHAIN: ${{ ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/darwin-x86_64
           RANLIB: ${{ ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib
 
