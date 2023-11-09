@@ -12,4 +12,4 @@ tokenizers = { path = "../../vendors/tokenizers/tokenizers", version = "*", feat
 openssl = { version = "0.10", features = ["vendored"] }
 
 [lib]
-crate_type = ["cdylib"]
+crate-type = ["staticlib", "cdylib"]
