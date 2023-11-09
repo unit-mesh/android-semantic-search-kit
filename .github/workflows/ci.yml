@@ -53,8 +53,8 @@ jobs:
         run: ./gradlew cargoBuild
         env:
           ANDROID_NDK_HOME: $ANDROID_SDK_ROOT/ndk
-          TOOLCHAIN: ${{ ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/darwin-x86_64
-          RANLIB: ${{ ANDROID_NDK_HOME }}/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib
+          TOOLCHAIN: $ANDROID_SDK_ROOT/ndk/toolchains/llvm/prebuilt/darwin-x86_64
+          RANLIB: $ANDROID_SDK_ROOT/ndk/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib
 
       - name: build iso
         run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
