@@ -51,6 +51,7 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
           TOOLCHAIN: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/darwin-x86_64
+          RANLIB: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib
 
       - name: build iso
         run: cargo build --target=aarch64-apple-ios && cargo build --target=x86_64-apple-ios
