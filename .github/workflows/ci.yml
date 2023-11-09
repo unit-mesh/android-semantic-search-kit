@@ -25,6 +25,7 @@ jobs:
       - uses: nttld/setup-ndk@v1
         with:
           ndk-version: r26b
+          local-cache: true
           add-to-path: true
 
       - name: Setup Android SDK
