@@ -420,7 +420,7 @@ pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_To
     let array: jobjectArray = env
         .new_object_array(
             len,
-            "ai/djl/huggingface/tokenizers/jni/CharSpan",
+            "org/unitmesh/tokenizer/huggingface/tokenizers/jni/CharSpan",
             JObject::null(),
         )
         .unwrap();
@@ -428,7 +428,7 @@ pub extern "system" fn Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_To
         let opt_offsets: Option<(usize, Offsets)> = encoding.token_to_chars(i);
         match &opt_offsets {
             Some((_, offsets)) => {
-                let class_id = "ai/djl/huggingface/tokenizers/jni/CharSpan";
+                let class_id = "org/unitmesh/tokenizer/huggingface/tokenizers/jni/CharSpan";
                 let method_id = "<init>";
                 let params = "(II)V";
                 let cls: JClass = env.find_class(class_id).unwrap();
