@@ -47,7 +47,14 @@ class STSemantic(
         for (i in 0 until 384) {
             var sum = 0f
             for (j in inputIds.indices) {
-                sum += floatArray[j * 384 + i]
+                val index = j * 384 + i;
+
+                if (index < 384) {
+                    sum += floatArray[index]
+                } else {
+                    // 处理越界情况，可以抛出异常或采取其他措施
+//                    throw IndexOutOfBoundsException("Index out of bounds: $index")
+                }
             }
 
             meanArray[i] = sum / inputIds.size
