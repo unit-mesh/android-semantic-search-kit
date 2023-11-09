@@ -44,7 +44,6 @@ class STSemantic(
 
         val floatArray = outputTensor.floatBuffer.array()
         val shapeSize = outputTensor.info.shape[2].toInt()
-        // floatArray is an inputIds.size * 384 array, we need to mean it to 384 and values
         val meanArray = FloatArray(shapeSize)
         for (i in 0 until shapeSize) {
             var sum = 0f
