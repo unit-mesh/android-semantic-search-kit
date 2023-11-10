@@ -4,6 +4,10 @@
 [![Powered By](https://img.shields.io/badge/powered_by-chocolate_factory-blue?logo=kotlin&logoColor=fff)](https://github.com/unit-mesh/chocolate-factory)
 ![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
 
+## Screenshots
+
+<img src="https://unitmesh.cc/android-llm/llm-embedding.png" width="300" />
+
 ## Quick Start and failed
 
 参考：[GitHub Workflows](.github/workflows/ci.yml)
