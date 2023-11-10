@@ -6,6 +6,8 @@
 
 ## Screenshots
 
+Embedding Demo:
+
 <img src="https://unitmesh.cc/android-llm/llm-embedding.png" width="300" />
 
 ## Quick Start and failed
