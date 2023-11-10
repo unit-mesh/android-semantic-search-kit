@@ -56,9 +56,3 @@ jobs:
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
-
-      - name: Releasing using Hub
-        uses: ShaunLWM/action-release-debugapk@master
-        env:
-          APP_FOLDER: app
-          RELEASE_TITLE: New Build
