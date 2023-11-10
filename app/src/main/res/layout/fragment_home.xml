@@ -6,91 +6,73 @@
                                                    android:layout_height="match_parent"
                                                    tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sentence Similarity"
+                android:textSize="14sp"
+                android:textColor="@color/colorGray"
+                android:layout_marginBottom="8dp"/>
+
+        <EditText
+                android:id="@+id/defaultSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Source Sentence"
+                android:inputType="text"/>
+
+        <!-- 子标题 -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sentences to compare to"
+                android:textSize="14sp"
+                android:textColor="@color/colorGray"
+                android:layout_marginBottom="8dp"/>
+
+        <!-- 输入表单 -->
+        <LinearLayout
+                android:id="@+id/textContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <!-- 此处将用于容纳新的 TextView -->
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
-            <TextView
-                    android:layout_width="match_parent"
+            <Button
+                    android:id="@+id/addButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sentence Similarity"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorGray"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="Add Sentence"
+                    android:onClick="add"
+                    android:layout_marginEnd="8dp"/> <!-- 添加一个间距 -->
 
-            <EditText
-                    android:id="@+id/defaultSource"
-                    android:layout_width="match_parent"
+            <Button
+                    android:id="@+id/computeButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Source Sentence"
-                    android:inputType="text"/>
-
-            <!-- 子标题 -->
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sentences to compare to"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorGray"
-                    android:layout_marginBottom="8dp"/>
-
-            <!-- 输入表单 -->
-            <LinearLayout
-                    android:id="@+id/textContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <!-- 此处将用于容纳新的 TextView -->
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
-
-                <Button
-                        android:id="@+id/addButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Add Sentence"
-                        android:onClick="add"
-                        android:layout_marginEnd="8dp"/> <!-- 添加一个间距 -->
-
-                <Button
-                        android:id="@+id/computeButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Compute"
-                        android:onClick="compute"/>
-
-            </LinearLayout>
-
-            <!-- 输出结果 -->
-            <LinearLayout
-                    android:id="@+id/outputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="16dp">
-
-
-                <TextView
-                        android:id="@+id/jsonOutput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Output: "
-                        android:layout_marginStart="8dp"/>
-
-            </LinearLayout>
+                    android:text="Compute"
+                    android:onClick="compute"/>
 
         </LinearLayout>
-    </ScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

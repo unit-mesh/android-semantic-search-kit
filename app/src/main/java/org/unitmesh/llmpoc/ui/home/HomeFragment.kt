@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cc.unitmesh.rag.document.Document
 import cc.unitmesh.rag.store.InMemoryEmbeddingStore
 import org.unitmesh.llmpoc.R
@@ -55,7 +57,6 @@ class HomeFragment : Fragment() {
         computeButton.setOnClickListener { compute() }
 
         stSemantic = STSemantic.create(this.requireContext())
-        embeddingStore = InMemoryEmbeddingStore()
 
         return root
     }
@@ -88,6 +89,9 @@ class HomeFragment : Fragment() {
     }
 
     fun compute() {
+        // EmbeddingStore 没有 reset 方法，所以每次都需要重新创建
+        embeddingStore = InMemoryEmbeddingStore()
+
         // 获取所有的 TextView
         val textViews = mutableListOf<EditText>()
         for (i in 0 until textContainer.childCount) {
@@ -98,16 +102,47 @@ class HomeFragment : Fragment() {
         }
 
         // 获取所有的句子
-        val sentences = textViews.map { it.text.toString() }
 
         // 处理添加句子的逻辑
-        sentences.forEach { embeddingStore.add(stSemantic.embed(it), Document.from(it)) }
+        textViews.map { it.text.toString() }.forEach { embeddingStore.add(stSemantic.embed(it), Document.from(it)) }
+
         val defaultTextView = binding.defaultSource
         val defaultText = defaultTextView.text.toString()
 
         // 处理计算相似度的逻辑
-        val relevantEmbeddings = embeddingStore.findRelevant(stSemantic.embed(defaultText), 3)
-        val jsonOutput = binding.jsonOutput
-        jsonOutput.text = relevantEmbeddings.toString()
+        val relevantEmbeddings = embeddingStore.findRelevant(stSemantic.embed(defaultText), 3).map {
+            ExampleItem(it.embedded.text, it.score.toString())
+        }
+
+        val recyclerView: RecyclerView = binding.root.findViewById(R.id.recyclerView)
+        val layoutManager = LinearLayoutManager(this.requireContext())
+
+        recyclerView.layoutManager = layoutManager
+
+        val adapter = ExampleAdapter(relevantEmbeddings)
+        recyclerView.adapter = adapter
+    }
+}
+
+data class ExampleItem(val text: String, val score: String)
+class ExampleAdapter(private val items: List<ExampleItem>) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.example_item_layout, parent, false)
+        return ExampleViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
+        val currentItem = items[position]
+        holder.exampleTextView.text = currentItem.text
+        holder.exampleScoreTextView.text = currentItem.score
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val exampleTextView: TextView = itemView.findViewById(R.id.exampleTextView)
+        val exampleScoreTextView: TextView = itemView.findViewById(R.id.exampleScoreTextView)
     }
 }
