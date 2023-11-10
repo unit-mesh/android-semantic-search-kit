@@ -78,7 +78,38 @@ cargo build --target=x86_64-apple-ios --release
 
 5.run app
 
-## Model
+## Model for Testing
+
+### Convert Model to OnnX
+
+Tools: [https://github.com/huggingface/optimum](https://github.com/huggingface/optimum)
+
+
+1.setup
+
+```bash
+pip install optimum[exporters,onnxruntime]
+```
+
+2.convert onnx
+
+```bash
+optimum-cli export onnx -m Helsinki-NLP/opus-mt-zh-en --optimize O2 optus-mt-zh-en-onnx
+```
+
+3.quantize Onnx
+
+```bash
+optimum-cli onnxruntime quantize \
+  --avx512 \
+  --onnx_model bert-tiny-onnx \
+  -o quantized_bert-tiny-onnx
+```
+
+
+Examples: [https://github.com/unit-mesh/onnx-convert-test](https://github.com/unit-mesh/onnx-convert-test)
+
+### Embedding Model
 
 IntelliJ IDEA Search Everywhere Model:
 
@@ -91,6 +122,8 @@ Bloop Model:
 - [all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
 
 ## FAQ
+
+### Failed to load Huggingface native library.
 
 ```
 Caused by: ai.djl.engine.EngineException: Failed to load Huggingface native library.
