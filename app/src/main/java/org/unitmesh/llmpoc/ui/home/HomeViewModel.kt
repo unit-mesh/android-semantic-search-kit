@@ -9,5 +9,14 @@ class HomeViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
+
     val text: LiveData<String> = _text
+
+    fun addSentence(sourceSentence: String, compareSentence: String) {
+        // 处理添加句子的逻辑
+    }
+
+    fun computeSimilarity() {
+        // 处理计算相似度的逻辑
+    }
 }
