@@ -1,7 +1,8 @@
 # Run LLM on Android
 
 [![Android](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml/badge.svg)](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+[![Powered By](https://img.shields.io/badge/powered_by-chocolate_factory-blue?logo=kotlin&logoColor=fff)](https://github.com/unit-mesh/chocolate-factory)
+![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
 
 ## Quick Start and failed
 
