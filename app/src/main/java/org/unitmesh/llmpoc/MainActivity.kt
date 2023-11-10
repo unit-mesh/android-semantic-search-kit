@@ -6,6 +6,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import cc.unitmesh.rag.document.Document
+import cc.unitmesh.rag.store.InMemoryEmbeddingStore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.unitmesh.llmpoc.databinding.ActivityMainBinding
 import org.unitmesh.llmpoc.embedding.STSemantic
@@ -34,8 +36,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         val stSemantic = STSemantic.create(this)
-        val output = stSemantic.embed("demo")
-        println(output)
 
+        val embeddingStore = InMemoryEmbeddingStore<Document>()
+
+        listOf("That is a happy dog", "That is a very happy person", "Today is a sunny day")
+            .map { Document.from(it) }
+            .forEach { embeddingStore.add(stSemantic.embed(it.text), it) }
+
+        embeddingStore.findRelevant(stSemantic.embed("That is a happy person"), 3)
+            .forEach { println(it) }
     }
 }
