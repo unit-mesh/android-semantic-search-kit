@@ -1,4 +1,4 @@
-# Android LLM PoC
+# Run LLM on Android
 
 [![Android](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml/badge.svg)](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
