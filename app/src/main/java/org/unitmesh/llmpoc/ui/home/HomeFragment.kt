@@ -12,15 +12,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cc.unitmesh.nlp.embedding.Embedding
+import cc.unitmesh.nlp.similarity.CosineSimilarity
+import cc.unitmesh.nlp.similarity.RelevanceScore
 import cc.unitmesh.rag.document.Document
+import cc.unitmesh.rag.store.EmbeddingMatch
 import cc.unitmesh.rag.store.InMemoryEmbeddingStore
 import org.unitmesh.llmpoc.R
 import org.unitmesh.llmpoc.databinding.FragmentHomeBinding
+import org.unitmesh.llmpoc.embedding.CustomEmbedding
 import org.unitmesh.llmpoc.embedding.STSemantic
+import java.util.*
 
 class HomeFragment : Fragment() {
 
-    private lateinit var embeddingStore: InMemoryEmbeddingStore<Document>
+    private lateinit var embeddingStore: CustomEmbedding<Document>
     private lateinit var stSemantic: STSemantic
     private var _binding: FragmentHomeBinding? = null
 
@@ -89,8 +95,7 @@ class HomeFragment : Fragment() {
     }
 
     fun compute() {
-        // EmbeddingStore 没有 reset 方法，所以每次都需要重新创建
-        embeddingStore = InMemoryEmbeddingStore()
+        embeddingStore = CustomEmbedding()
 
         // 获取所有的 TextView
         val textViews = mutableListOf<EditText>()
