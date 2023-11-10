@@ -2,13 +2,19 @@
 
 ## Quick Start and failed
 
+参考：[GitHub Workflows](.github/workflows/ci.yml)
+
+### 本地构建（暂时不保证成功）
+
 ```bash
 git submodule update --init
 ```
 
 1.setup NDK
 
-```
+需要把 NDK 换成你的本地 NDK 路径和版本
+
+```bash
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk/26.1.10909125
 
@@ -28,13 +34,13 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$TOOLCHAIN/bin
 ```
 
-same to `[local.properties](local.properties)` if you use Android Studio
+2.setup Rust target
 
-```
-ndk.dir=/Users/phodal/Library/Android/sdk/ndk/26.1.10909125
+```bash
+rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi x86_64-linux-android aarch64-linux-android
 ```
 
-config linked
+3.config linker
 
 After that add the following like to `$HOME/.cargo/config` (make the config file if it doesn't exist):
 
@@ -54,14 +60,7 @@ linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/pr
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android34-clang"
 ```
 
-
-2.setup Rust target
-
-```bash
-rustup target add armv7-linux-androideabi i686-linux-android arm-linux-androideabi x86_64-linux-android aarch64-linux-android
-```
-
-3.build
+4.build
 
 ```
 ./gradlew cargoBuild
@@ -85,7 +84,7 @@ Bloop:
 
 [all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
 
-## Know issue
+## FAQ
 
 ```
 Caused by: ai.djl.engine.EngineException: Failed to load Huggingface native library.
