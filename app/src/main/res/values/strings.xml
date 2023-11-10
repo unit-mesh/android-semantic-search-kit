@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="add_sentence">Add Sentence</string>
+    <string name="compute">Compute</string>
+    <string name="sentences_to_compare_to">Sentences to compare to</string>
+    <string name="source_sentence">Source Sentence</string>
+    <string name="sentence_similarity">Sentence Similarity</string>
 </resources>
