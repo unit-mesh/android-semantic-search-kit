@@ -60,29 +60,32 @@ linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/pr
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android34-clang"
 ```
 
-4.build
+4.build ffi
 
 ```
 ./gradlew cargoBuild
 ```
 
-for iOS
+for iOS (sample, not working)
 
 ```
 rustup target add aarch64-apple-ios
+cargo build --target=x86_64-apple-ios --release
 ```
+
+5.run app
 
 ## Model
 
-Intellij IDEA:
+IntelliJ IDEA Search Everywhere Model:
 
 - semantic-text-search-0.0.1.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.1/semantic-text-search-0.0.1.jar)
 - semantic-text-search-0.0.2.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.2/semantic-text-search-0.0.2.jar)
 - semantic-text-search-0.0.3.jar, 9.6M - [dan-bert-tiny](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.3/semantic-text-search-0.0.3.jar)
 
-Bloop: 
+Bloop Model: 
 
-[all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
+- [all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
 
 ## FAQ
 
