@@ -1,15 +1,18 @@
-name: Android
+name: Android Debug
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+      - '*'
 
 jobs:
   instrumented_tests:
     name: Run Scripts
     runs-on: macos-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -56,3 +59,9 @@ jobs:
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
+
+      # Upload artifact as a release asset
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.event.release.tag_name }} app/build/outputs/apk/debug/app-debug.apk
