@@ -30,9 +30,6 @@ jobs:
           cmake-version: 3.10.2.4988404
           ndk-version: 26.1.10909125
 
-      - name: checkout
-        uses: actions/checkout@v2
-
       - name: rust toolchain setup
         uses: actions-rs/toolchain@v1
         with:
@@ -47,7 +44,7 @@ jobs:
       - name: setup build targets
         run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android aarch64-apple-ios x86_64-apple-ios
 
-      - name: build android
+      - name: Build Android Cargo
         run: ./gradlew cargoBuild
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/26.1.10909125
@@ -63,6 +60,5 @@ jobs:
       - name: Releasing using Hub
         uses: ShaunLWM/action-release-debugapk@master
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           APP_FOLDER: app
           RELEASE_TITLE: New Build
