@@ -1,4 +1,4 @@
-# Run LLM on Android
+# Run LLM/Embedding on Android
 
 [![Android](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml/badge.svg)](https://github.com/unit-mesh/run-llm-on-android/actions/workflows/ci.yml)
 [![Powered By](https://img.shields.io/badge/powered_by-chocolate_factory-blue?logo=kotlin&logoColor=fff)](https://github.com/unit-mesh/chocolate-factory)
@@ -117,6 +117,10 @@ optimum-cli onnxruntime quantize \
 Examples: [https://github.com/unit-mesh/onnx-convert-test](https://github.com/unit-mesh/onnx-convert-test)
 
 ### Embedding Model
+
+Other Testing Models:
+
+- [https://github.com/unit-mesh/testing-onnx-models](https://github.com/unit-mesh/testing-onnx-models)
 
 IntelliJ IDEA Search Everywhere Model:
 
