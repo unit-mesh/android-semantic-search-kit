@@ -16,23 +16,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-            <!-- 标题部分 -->
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                <TextView
-                        android:id="@+id/text_home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Inference API"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-
-            </LinearLayout>
-
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,12 +41,13 @@
                     android:layout_marginBottom="8dp"/>
 
             <!-- 输入表单 -->
-            <EditText
-                    android:id="@+id/editTextSource"
+            <LinearLayout
+                    android:id="@+id/textContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Source Sentence"
-                    android:inputType="text" />
+                    android:orientation="vertical">
+                <!-- 此处将用于容纳新的 TextView -->
+            </LinearLayout>
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -94,16 +78,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="16dp"
-                    android:visibility="gone">
+                    android:layout_marginTop="16dp">
 
 
-                    <TextView
-                            android:id="@+id/jsonOutput"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Output"
-                            android:layout_marginStart="8dp"/>
+                <TextView
+                        android:id="@+id/jsonOutput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Output: "
+                        android:layout_marginStart="8dp"/>
 
             </LinearLayout>
 

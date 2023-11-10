@@ -34,16 +34,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        val stSemantic = STSemantic.create(this)
-
-        val embeddingStore = InMemoryEmbeddingStore<Document>()
-
-        listOf("That is a happy dog", "That is a very happy person", "Today is a sunny day")
-            .map { Document.from(it) }
-            .forEach { embeddingStore.add(stSemantic.embed(it.text), it) }
-
-        embeddingStore.findRelevant(stSemantic.embed("That is a happy person"), 3)
-            .forEach { println(it) }
     }
 }
