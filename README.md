@@ -10,7 +10,7 @@ Embedding Demo:
 
 <img src="https://unitmesh.cc/android-llm/llm-embedding.png" width="300" />
 
-## Quick Start and failed
+## Quick Start and Swift Retries
 
 参考：[GitHub Workflows](.github/workflows/ci.yml)
 
@@ -22,7 +22,7 @@ git submodule update --init
 
 1.setup NDK
 
-需要把 NDK 换成你的本地 NDK 路径和版本
+将 NDK 换成你的本地 NDK 路径和版本（我的本地 macOS 示例）
 
 ```bash
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -56,6 +56,8 @@ After that add the following like to `$HOME/.cargo/config` (make the config file
 
 Follow: [https://doc.rust-lang.org/beta/rustc/platform-support.html](https://doc.rust-lang.org/beta/rustc/platform-support.html)
 
+PS: remember to change the path to your NDK
+
 ```toml
 [target.i686-linux-android]
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android34-clang"
@@ -70,7 +72,7 @@ linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/pr
 linker = "/Users/phodal/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android34-clang"
 ```
 
-4.build ffi
+4.build FFI
 
 ```
 ./gradlew cargoBuild
@@ -90,7 +92,6 @@ cargo build --target=x86_64-apple-ios --release
 ### Convert Model to OnnX
 
 Tools: [https://github.com/huggingface/optimum](https://github.com/huggingface/optimum)
-
 
 1.setup
 
@@ -113,10 +114,9 @@ optimum-cli onnxruntime quantize \
   -o quantized_bert-tiny-onnx
 ```
 
-
 Examples: [https://github.com/unit-mesh/onnx-convert-test](https://github.com/unit-mesh/onnx-convert-test)
 
-### Embedding Model
+### Mini Embedding Model spikes
 
 Other Testing Models:
 
@@ -124,13 +124,15 @@ Other Testing Models:
 
 IntelliJ IDEA Search Everywhere Model:
 
-- semantic-text-search-0.0.1.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.1/semantic-text-search-0.0.1.jar)
-- semantic-text-search-0.0.2.jar, 88.4M - [multi-qa-MiniLM-L6-cos-v1](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.2/semantic-text-search-0.0.2.jar)
-- semantic-text-search-0.0.3.jar, 9.6M - [dan-bert-tiny](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.3/semantic-text-search-0.0.3.jar)
+- semantic-text-search-0.0.1.jar,
+  88.4M - [multi-qa-MiniLM-L6-cos-v1](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.1/semantic-text-search-0.0.1.jar)
+- semantic-text-search-0.0.3.jar,
+  9.6M - [dan-bert-tiny](https://packages.jetbrains.team/maven/p/ml-search-everywhere/local-models/org/jetbrains/intellij/searcheverywhereMl/semantics/semantic-text-search/0.0.3/semantic-text-search-0.0.3.jar)
 
-Bloop Model: 
+Bloop Model:
 
-- [all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model), 21.9M
+- [all-MiniLM-L6-v2](https://github.com/BloopAI/bloop/tree/95559bf47dbe40497f01665184d194726378e800/apps/desktop/src-tauri/model),
+  21.9M
 
 ## FAQ
 
@@ -193,6 +195,27 @@ Error building Rust project for Android (Flutter): arm-linux-androideabi-ranlib 
 
 https://stackoverflow.com/questions/75943717/error-building-rust-project-for-android-flutter-arm-linux-androideabi-ranlib
 
+### Failed to load model with error
 
+需要更新 Onnx Runtime 的版本
 
+thread 'tokio-runtime-worker' panicked at 'called `Result::unwrap()` on an `Err` value: CreateSession(Msg("Failed to
+load model with error: /Users/runner/work/1/s/onnxruntime/core/graph/model_load_utils.h:56 void onnxruntime::
+model_load_utils::ValidateOpsetForDomain(const std::unordered_map<std::string, int> &, const logging::Logger &, bool,
+const std::string &, int) ONNX Runtime only *guarantees* support for models stamped with official released onnx opset
+versions. Opset 19 is under development and support for this is limited. The operator schemas and or other functionality
+may change before next ONNX release and in this case ONNX Runtime will not guarantee backward compatibility. Current
+official support for domain com.ms.internal.nhwc is till opset 18.\n"))',
+/Volumes/source/ai/Inference/inference_core/src/embed.rs:49:18
 
+其它问题： [use v1.9.0 to load ONNX Opset 15 failed](https://github.com/microsoft/onnxruntime/issues/9418)
+
+### JNI 函数名不对
+
+加载函数：`System.LoadLibrary("tokenizers");`
+
+No implementation found for long
+org.unitmesh.tokenizer.huggingface.tokenizers.jni.TokenizersLibrary.createTokenizerFromString(java.lang.String) (tried
+Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizerFromString and
+Java_org_unitmesh_tokenizer_huggingface_tokenizers_jni_TokenizersLibrary_createTokenizerFromString__Ljava_lang_String_2) -
+is the library loaded, e.g. System.loadLibrary?

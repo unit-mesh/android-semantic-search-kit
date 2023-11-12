@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation(project(":tokenizer"))
-    implementation("ai.djl.android:onnxruntime:0.23.0")
+    implementation("ai.djl.android:onnxruntime:0.25.0")
     implementation("cc.unitmesh:cocoa-core:0.4.2")
 
     implementation("org.slf4j:slf4j-simple:2.0.9")
