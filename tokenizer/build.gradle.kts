@@ -57,8 +57,7 @@ android {
 
     gradle.projectsEvaluated {
         android.libraryVariants.all { variant ->
-            println("${variant.name}........")
-            variant.javaCompileProvider.dependsOn(tasks.getByName("compileJNI"))
+            variant.javaCompileProvider.dependsOn("compileJNI")
             true
         }
     }
@@ -68,10 +67,6 @@ val version = "0.1.0"
 
 tasks.register("compileJNI") {
     doFirst {
-        copy {
-            from("${project.projectDir}/tokenizers.properties")
-            into("${project.projectDir}/libs")
-        }
         exec {
             commandLine("bash", "build.sh", version, "x86_64-linux-android", "x86_64")
         }
